@@ -1,6 +1,7 @@
 package no.hib.dat100.prosjekt.modell;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Struktur for Ã‚ lagre ei samling kort. Kan lagre hele kortstokken. Det finnes
@@ -12,15 +13,19 @@ import java.util.ArrayList;
 public abstract class KortSamling {
 
 	public static final int MAKS_KORT_FARGE = 3;
-	private final int MAKS_KORT = 4 * MAKS_KORT_FARGE;
+	private final int MAKS_VERDI = 4; //for enkel forandring
+	private final int MAKS_KORT = MAKS_VERDI * MAKS_KORT_FARGE;
 
 	// legg til objektvariable her
+	private int counter;
+	private Kort samling[];
 
 	/**
 	 * Oppretter en tom Kortsamling med plass til MAKS_KORT (hele kortstokken).
 	 */
 	public KortSamling() {
-		throw new RuntimeException("kortsamling ikke implementert");
+		counter = 0;
+		samling = new Kort[MAKS_KORT];
 	}
 
 	/**
@@ -29,7 +34,10 @@ public abstract class KortSamling {
 	 * @return true om samlinga er tom, false ellers.
 	 */
 	public boolean erTom() {
-		throw new RuntimeException("erTom ikke implementert");
+		if(counter==0){
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -42,7 +50,9 @@ public abstract class KortSamling {
 	 * @return tabell av kort.
 	 */
 	public Kort[] getSamling() {
-		throw new RuntimeException("getSamling ikke implementert");
+		return samling; 
+		//Eeh, ser iffy ut for meg. Er ikkje sikker på om dette er god kodestil.
+		//Burde heller returnere en kopi av listen?
 	}
 
 	/**
@@ -51,22 +61,34 @@ public abstract class KortSamling {
 	 * @return antall kort i samlinga.
 	 */
 	public int getAntalKort() {
-		throw new RuntimeException("getAntalKort ikke implementert");
+		//Dette returnerer antal kort, *ikkje* indeksen til siste kortet.
+		return counter;
 	}
 
 	/**
-	 * Legger alle korta (hele kortstokken) til samlnga. Korta vil vÃŠre sortert
+	 * Legger alle korta (hele kortstokken) til samlinga. Korta vil vÃŠre sortert
 	 * slik at de normalt mÃ‚ stokkes fÂ¯r bruk.
 	 */
 	public void leggTilAlle() {
-		throw new RuntimeException("leggTilAlle ikke implementert");
+		//TODO Sjekk at dette faktisk fungerer. Burde gjøre det, er ikkje sikker.
+		Kortfarge kortFarge[] = Kortfarge.values();
+		int index = 0;
+		for(int i = 0; i<MAKS_KORT_FARGE; i++){
+			for(int verdi = 1; verdi<=MAKS_VERDI; verdi++){
+				Kort nyKort = new Kort(kortFarge[i], verdi);
+				this.samling[index] = nyKort;
+				index++;
+				counter++;
+			}
+		}
 	}
 
 	/**
 	 * Fjerner alle korta fra samlinga slik at den blir tom.
 	 */
 	public void fjernAlle() {
-		throw new RuntimeException("fjernAlle ikke implementert");
+		samling = new Kort[MAKS_KORT];
+		counter = 0;
 	}
 
 	/**
@@ -76,7 +98,14 @@ public abstract class KortSamling {
 	 *            er kortet som skal leggast til.
 	 */
 	public void leggTil(Kort kort) {
-		throw new RuntimeException("leggTil ikke implementert");
+		if(counter<MAKS_KORT){
+			//Passer på at du bare kan legge til kort viss det er mer plass til det
+			samling[counter] = kort;
+			counter++;
+		}
+		else{
+			throw new IllegalArgumentException("FEIL: Maksimal størrelse nådd, kan ikkje legge til flere kort!");
+		}
 	}
 
 	/**
@@ -85,7 +114,8 @@ public abstract class KortSamling {
 	 * @return siste kortet i samlinga, men det blir ikke fjernet.
 	 */
 	public Kort seSiste() {
-		throw new RuntimeException("seSiste ikke implementert");
+		return samling[counter-1];
+		//samme som før, vil helst ikkje gi ut det faktiske objektet...
 	}
 
 	/**
@@ -95,8 +125,13 @@ public abstract class KortSamling {
 	 *         null.
 	 */
 	public Kort taSiste() {
-		
-		throw new RuntimeException("taSiste ikke implementert");
+		if(counter>0){
+			Kort tempKort = samling[counter-1];
+			samling[counter-1] = null;
+			counter--;
+			return tempKort;
+		}
+		return null;
 	}
 
 	/**
@@ -107,8 +142,16 @@ public abstract class KortSamling {
 	 * @return true om kortet finst i samlinga, false ellers.
 	 */
 	public boolean har(Kort kort) {
+		if(kort == null){
+			return false;
+		}
+		for(Kort element : samling){
+			if(kort.equals(element)){
+				return true;
+			}
+		}
 
-		throw new RuntimeException("har ikke implementert");
+		return false;
 	}
 
 	/**
@@ -120,7 +163,21 @@ public abstract class KortSamling {
 	 *            ingenting.
 	 */
 	public void fjern(Kort kort) {
-		throw new RuntimeException("fjern ikke implementert");
+		if(this.har(kort)){
+			for(int i = 0; i<MAKS_KORT; i++){
+				if(samling[i].equals(kort)){
+					samling[i] = null;
+					for(int next = 0; next<MAKS_KORT-i; next++){
+						samling[i+next] = samling[i+next];
+					}
+					counter--;	
+					//Tror dette lar noen ubrukte entries ha kort  object i dem
+					//Men siden counteren er lavere kan de ikkje sees.
+					break;
+				}
+			}
+
+		}
 	}
 
 	/**
@@ -129,7 +186,26 @@ public abstract class KortSamling {
 	 * 
 	 */
 	public void stokk() {
-		throw new RuntimeException("stokk ikke implementert");
+		//make tempList[MAKS_KORT]
+		//copy mainList to tempList
+		//loop through mainList
+		//for each, run a random from 0 to MAKS_KORT-i
+		//assign the card at the position from random to the index i in mainList
+		//remove that card from tempList
+		Kort tempList[] = new Kort[MAKS_KORT];
+		Random random = new Random();
+		for(int i = 0; i<MAKS_KORT; i++){
+			tempList[i] = samling[i];
+		}
+		for(int index = 0; index<MAKS_KORT; index++){
+			int ran = random.nextInt(MAKS_KORT-index); //If vi mister et kort når vi stokker, er feilen sikkert her!
+			samling[index] = tempList[ran];
+			tempList[ran] = null;
+			for(int next = 0; next<MAKS_KORT-ran; next++){
+				tempList[ran+next] = tempList[ran+next+1];
+			}
+		}
+
 	}
 
 	/**
@@ -139,7 +215,13 @@ public abstract class KortSamling {
 	 *         som i kortsamlinga.
 	 */
 	public ArrayList<Kort> toArrayList() {
-		
-		throw new RuntimeException("toArrayList ikke implementert");
+		ArrayList<Kort> arraySamling = new ArrayList<Kort>();
+		for(int i=0; i<MAKS_KORT; i++){
+			if(samling[i]!=null){
+				arraySamling.add(samling[i]);
+			}
+		}
+		System.out.println(arraySamling);
+		return arraySamling;
 	}
 }

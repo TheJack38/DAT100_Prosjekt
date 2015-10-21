@@ -21,7 +21,3 @@ public class VriOtteSpil {
 	}
 }
 
-//TEST
-//TESTING MOLESTING
-//ANNA FARIS WITH A T INSTEAD OF I IS ANNA FARTS
-//Lolnub
