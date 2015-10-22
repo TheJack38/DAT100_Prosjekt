@@ -22,14 +22,11 @@ public class Hand extends KortSamling {
 	 * @param kort kortet som skal legges til.
 	 */
 	@Override
-	public void leggTil(Kort kort) {
+	public void leggTil(Kort kort ) {
 //		throw new RuntimeException("leggTil ikke implementert");
 		this.leggTil(kort);
-		for(int i = 0;i<MAKS_KORT;i++) {
-			ha.kortpaahand[i]= kort;
 		}
 
-	}
 	/**
 	 * Sorterer en hand. Rekkefølgen er bestemt av compareTo() i Kort-klassen.
 	 * 
