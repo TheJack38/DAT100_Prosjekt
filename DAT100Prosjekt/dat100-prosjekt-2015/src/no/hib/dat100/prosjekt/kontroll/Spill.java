@@ -69,8 +69,14 @@ public class Spill {
 	 * 
 	 */
 	private void delutKort() {
-
-		throw new RuntimeException("delutKort ikke implementert");
+		for(int i = 0; i<7; i++){
+			Kort fraTopp = fraBunke.trekk();
+			syd.leggTilKort(fraTopp);
+		}
+		for(int i = 0; i<7; i++){
+			Kort fraTopp = fraBunke.trekk();
+			nord.leggTilKort(fraTopp);
+		}
 	}
 
 	/**
