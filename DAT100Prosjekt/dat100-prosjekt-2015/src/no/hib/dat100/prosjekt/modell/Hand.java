@@ -1,7 +1,7 @@
 package no.hib.dat100.prosjekt.modell;
 
 /**
- * Klasse for Ã‚ representere en hand. Kortene er sortert i henhold compareTo()
+ * Klasse for å representere en hand. Kortene er sortert i henhold compareTo()
  * for Kort.
  * 
  */
@@ -15,10 +15,10 @@ public class Hand extends KortSamling {
 	/**
 	 * Lager en tom hand.
 	 */
-	public Hand() {
+	public Hand() { 
 		super();
 	}
-
+	Hand ha = new Hand();
 	/**
 	 * Legger et kort til en hand.
 	 * @param kort kortet som skal legges til.
@@ -26,10 +26,11 @@ public class Hand extends KortSamling {
 	@Override
 	public void leggTil(Kort kort) {
 //		throw new RuntimeException("leggTil ikke implementert");
-		kortpaahand = new Kort[MAKS_KORT];
-		for(int i = 0; i<MAKS_KORT;i++) {
-			kortpaahand[i]=kort;
-			}
+		ha.leggTil(kort);
+		for(int i = 0;i<MAKS_KORT;i++) {
+			ha.kortpaahand[i]= kort;
+		}
+
 	}
 	/**
 	 * Sorterer en hand. Rekkefølgen er bestemt av compareTo() i Kort-klassen.
