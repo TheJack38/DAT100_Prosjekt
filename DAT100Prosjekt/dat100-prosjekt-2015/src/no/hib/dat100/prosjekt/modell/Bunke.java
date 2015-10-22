@@ -23,12 +23,7 @@ public class Bunke extends KortSamling {
 	 * 
 	 */
 	public Kort trekk() {
-		//throw new RuntimeException("trekk ikke implementert");
-		Kort tempSamling[] = this.getSamling();
-		int n = tempSamling.length - 1;
-		int[] samling2 = new int[n];
-		System.arraycopy(tempSamling, 1, samling2, 0, n);
-		return tempSamling[0];
+		return this.taSiste();
 	}
 
 	/**
@@ -39,9 +34,6 @@ public class Bunke extends KortSamling {
 	 * 
 	 */
 	public Kort topp() {
-		//throw new RuntimeException("topp ikke implementert");
-		Kort tempSamling[] = this.getSamling();
-		Kort toppKort = tempSamling[0];
-		return toppKort;
+		return this.seSiste();
 	}
 }
