@@ -10,7 +10,6 @@ public class Hand extends KortSamling {
 
 	// oppretter variablar
 	private Kort kortpaahand[];
-	private final int MAKS_KORT = 12; 
 	
 	/**
 	 * Lager en tom hand.
@@ -18,7 +17,6 @@ public class Hand extends KortSamling {
 	public Hand() { 
 		super();
 	}
-	Hand ha = new Hand();
 	/**
 	 * Legger et kort til en hand.
 	 * @param kort kortet som skal legges til.
@@ -26,7 +24,7 @@ public class Hand extends KortSamling {
 	@Override
 	public void leggTil(Kort kort) {
 //		throw new RuntimeException("leggTil ikke implementert");
-		ha.leggTil(kort);
+		this.leggTil(kort);
 		for(int i = 0;i<MAKS_KORT;i++) {
 			ha.kortpaahand[i]= kort;
 		}
