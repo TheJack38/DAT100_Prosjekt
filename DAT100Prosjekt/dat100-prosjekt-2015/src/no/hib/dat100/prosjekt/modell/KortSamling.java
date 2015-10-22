@@ -51,8 +51,7 @@ public abstract class KortSamling {
 	 */
 	public Kort[] getSamling() {
 		return samling; 
-		//Eeh, ser iffy ut for meg. Er ikkje sikker på om dette er god kodestil.
-		//Burde heller returnere en kopi av listen?
+
 	}
 
 	/**
