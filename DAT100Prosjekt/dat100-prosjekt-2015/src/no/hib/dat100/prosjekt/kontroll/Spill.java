@@ -14,6 +14,10 @@ import no.hib.dat100.prosjekt.modell.Kort;
 public class Spill {
 
 	// legg til objektvariable her
+	ISpiller nord;
+	ISpiller syd;
+	Bunke fraBunke;
+	Bunke tilBunke;
 	
 	/**
 	 * Gir referanse/peker til syd.
@@ -21,7 +25,7 @@ public class Spill {
 	 * @return referanse/peker til syd.
 	 */
 	public ISpiller getSyd() {
-		throw new RuntimeException("getSyd ikke implementert");
+		return syd;
 	}
 
 	/**
@@ -30,7 +34,7 @@ public class Spill {
 	 * @return referanse/peker til nord.
 	 */
 	public ISpiller getNord() {
-		throw new RuntimeException("getNord ikke implementert");
+		return nord;
 	}
 
 	/**
@@ -39,11 +43,11 @@ public class Spill {
 	 * @return referanse/peker til til-bunken.
 	 */
 	public Bunke getBunkeTil() {
-		throw new RuntimeException("getBunkeTil ikke implementert");
+		return tilBunke;
 	}
 
 	public Bunke getBunkeFra() {
-		throw new RuntimeException("getBunkeFra ikke implementert");
+		return fraBunke;
 	}
 
 	/**
@@ -74,18 +78,24 @@ public class Spill {
 	 * billedsiden opp, men det trenger ikke gruppen tenke pÂ).
 	 */
 	private void vendOverste() {
-		throw new RuntimeException("vendOverste ikke implementert");
+		Kort tempKort = fraBunke.trekk();
+		tilBunke.leggTil(tempKort);
 	}
 
 	/**
-	 * NÂr fra-bunken blir tom, tar man vare pÂ kortet pÂ toppen av til-bunken.
+	 * N�r fra-bunken blir tom, tar man vare pÂ kortet pÂ toppen av til-bunken.
 	 * Deretter legges alle den andre kortene i til-bunken over i fra-bunken.
-	 * Denne stokkes og kortet som man har tatt vare pÂ legges tilbake i
-	 * til-bunken. Det vil nÂr vÊre det eneste kortet i til-bunken.
+	 * Denne stokkes og kortet som man har tatt vare p� legges tilbake i
+	 * til-bunken. Det vil n� v�re det eneste kortet i til-bunken.
 	 */
 	public void snuTilBunken() {
-
-		throw new RuntimeException("snuTilBunken ikke implementert");
+		//Anntar at denne bare blir kalt dersom vi vet fra-bunken er tom.
+		//Dersom ikkje, s� legg til if-setning om if(fraBunke == empty) eller noe
+		Kort tilTopp = tilBunke.trekk();
+		fraBunke = tilBunke;
+		fraBunke.stokk();
+		tilBunke.fjernAlle();
+		tilBunke.leggTil(tilTopp);
 	}
 
 	/**
@@ -99,8 +109,12 @@ public class Spill {
 	 * @return kortet som trekkes.
 	 */
 	public Kort trekkFraBunke(ISpiller spiller) {
-
-		throw new RuntimeException("trekkFraBunke ikke implementert");
+		if(bunkefraTom()){
+			this.snuTilBunken();
+		}
+		Kort tempTrekk = fraBunke.trekk();
+		spiller.leggTilKort(tempTrekk);
+		return tempTrekk; //Hvorfor returneres kortet?
 	}
 
 	/**
@@ -109,7 +123,7 @@ public class Spill {
 	 * @return true om til-bunken er tom, false ellers.
 	 */
 	public boolean bunketilTom() {
-		throw new RuntimeException("bunkeTilTom ikke implementert");
+		return tilBunke.erTom();
 	}
 
 	/**
@@ -118,7 +132,7 @@ public class Spill {
 	 * @return true om fra-bunken er tom, false ellers.
 	 */
 	public boolean bunkefraTom() {
-		throw new RuntimeException("bunkeFraTom ikke implementert");
+		return fraBunke.erTom();
 	}
 
 	/**
@@ -127,7 +141,7 @@ public class Spill {
 	 * @return antall kort nord har pÂ hÂnden.
 	 */
 	public int antallNord() {
-		throw new RuntimeException("antallNord ikke implementert");
+		return nord.getAntallKort();
 	}
 
 	/**
@@ -136,7 +150,7 @@ public class Spill {
 	 * @return antall kort i fra-bunken.
 	 */
 	public int antallBunkeFra() {
-		throw new RuntimeException("antallBunkeFra ikke implementert");
+		return fraBunke.getAntalKort();
 	}
 
 	/**
@@ -145,7 +159,7 @@ public class Spill {
 	 * @return antall kort i til-bunken.
 	 */
 	public int antallBunkeTil() {
-		throw new RuntimeException("antallBunkeTil ikke implementert");
+		return tilBunke.getAntalKort();
 	}
 
 	/**
@@ -155,7 +169,7 @@ public class Spill {
 	 * @return ¯verste kortet i til-bunken.
 	 */
 	public Kort seOverste() {
-		throw new RuntimeException("seOverste ikke implementert");
+		return tilBunke.topp();
 	}
 
 	/**
@@ -164,7 +178,7 @@ public class Spill {
 	 * @return syds hand som en ArrayList av Kort.
 	 */
 	public ArrayList<Kort> getSydHand() {
-		throw new RuntimeException("getSydHand ikke implementert");
+		return syd.getHand().toArrayList();
 	}
 
 	/**
@@ -176,7 +190,7 @@ public class Spill {
 	 * @return handlingen som blir utf¯rt.
 	 */
 	public Handling nesteHandling(ISpiller spiller) {
-		throw new RuntimeException("nesteHandling ikke implementert");
+		return spiller.nesteHandling(tilBunke.topp());
 	}
 
 	/**
