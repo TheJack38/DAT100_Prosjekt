@@ -23,7 +23,9 @@ public abstract class Spiller implements ISpiller {
 	 */
 	public Spiller() {
 		//throw new RuntimeException("Spiller kontruktør ikke implementert");
-		getHand();
+		this.getHand();
+		this.setAntallTrekk(0);
+		
 	}
 
 	/**
