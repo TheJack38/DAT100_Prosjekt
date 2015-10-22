@@ -8,6 +8,10 @@ package no.hib.dat100.prosjekt.modell;
 
 public class Hand extends KortSamling {
 
+	// oppretter variablar
+	private Kort kortpaahand[];
+	private final int MAKS_KORT = 12; 
+	
 	/**
 	 * Lager en tom hand.
 	 */
@@ -17,17 +21,18 @@ public class Hand extends KortSamling {
 
 	/**
 	 * Legger et kort til en hand.
-	 * 
-	 * @param kort
-	 *            kortet som skal legges til.
+	 * @param kort kortet som skal legges til.
 	 */
 	@Override
 	public void leggTil(Kort kort) {
-		throw new RuntimeException("leggTil ikke implementert");
+//		throw new RuntimeException("leggTil ikke implementert");
+		kortpaahand = new Kort[MAKS_KORT];
+		for(int i = 0; i<MAKS_KORT;i++) {
+			kortpaahand[i]=kort;
+			}
 	}
-
 	/**
-	 * Sorterer en hand. RekkefÂ¯lgen er bestemt av compareTo() i Kort-klassen.
+	 * Sorterer en hand. Rekkefølgen er bestemt av compareTo() i Kort-klassen.
 	 * 
 	 * @see Kort
 	 */
