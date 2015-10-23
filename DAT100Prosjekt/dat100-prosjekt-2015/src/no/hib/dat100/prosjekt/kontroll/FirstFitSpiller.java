@@ -38,6 +38,18 @@ public class FirstFitSpiller extends Spiller {
 		ArrayList<Kort> lovlige = new ArrayList<Kort>();
 		ArrayList<Kort> attere = new ArrayList<Kort>();
 
+		// sjå gjennom kort
+		for (Kort k : h) {
+			if (Regler.kanLeggeNed(k, topp)) { // regler, kva ein kan legge ned
+				if (!Regler.kanLeggeNed(k, topp)) { // om åtter,
+					lovlige.add(k); // legg til kort
+				} else {             // om ikkje,
+					attere.add(k);  // om lovlige, legg til kort
+				}
+			}
+		
+		}
+		
 		// spill første kortet som er lovlig å spille
 				
 			Kort spill = null; // oppretter objekt spill av Kort, setter verdi null
