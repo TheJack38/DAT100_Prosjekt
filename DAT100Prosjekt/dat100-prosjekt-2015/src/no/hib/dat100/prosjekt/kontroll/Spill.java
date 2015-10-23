@@ -60,7 +60,12 @@ public class Spill {
 	 * av en klasse laget av gruppen.
 	 */
 	public void start() {
-
+		nord = new RandomSpiller(Spillere.NORD);
+		syd = new MenneskeSpiller(Spillere.SYD);
+		fraBunke = new Bunke();
+		tilBunke = new Bunke();
+		fraBunke.leggTilAlle();
+		
 		throw new RuntimeException("start ikke implementert");
 	}
 
