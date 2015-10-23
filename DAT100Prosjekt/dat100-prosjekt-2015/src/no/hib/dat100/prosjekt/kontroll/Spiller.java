@@ -47,8 +47,8 @@ public abstract class Spiller implements ISpiller {
 
 	@Override
 	public int getAntallKort() {
-		//throw new RuntimeException("getAntallKort ikke implementert");
-		;
+		throw new RuntimeException("getAntallKort ikke implementert");
+		
 	}
 
 	@Override
