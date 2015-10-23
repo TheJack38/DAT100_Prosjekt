@@ -16,6 +16,7 @@ import no.hib.dat100.prosjekt.modell.Kort;
 public abstract class Spiller implements ISpiller {
 
 	// legg til objektvariable her
+	private Hand hand;
 	private Spillere spiller;
 	
 	/**
@@ -24,9 +25,9 @@ public abstract class Spiller implements ISpiller {
 	 */
 	public Spiller() {
 		//throw new RuntimeException("Spiller kontruktør ikke implementert");
-		Hand Spiller = new Hand();
-		this.setAntallTrekk(0);
+		hand = new Hand();
 		spiller = Spillere.INGEN;
+		setAntallTrekk(0);
 	}
 
 	/**
