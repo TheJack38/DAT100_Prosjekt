@@ -16,71 +16,86 @@ import no.hib.dat100.prosjekt.modell.Kort;
 public abstract class Spiller implements ISpiller {
 
 	// legg til objektvariable her
-
+	private Hand hand;
+	private Spillere spiller;
+	
 	/**
 	 * Standard konstrukt¯r som oppretter en Spiller med en hÂnd uten kort,
 	 * antalltrekk som 0 og setter spiller til Spillere.INGEN.
 	 */
 	public Spiller() {
 		//throw new RuntimeException("Spiller kontruktør ikke implementert");
-		getHand();
+		hand = new Hand();
+		spiller = Spillere.INGEN;
+		setAntallTrekk(0);
 	}
 
 	/**
-	 * Konstrukt¯r der vi kan sette hvilken spiller det er (NORD, SYD eller
+	 * Konstrukt�r der vi kan sette hvilken spiller det er (NORD, SYD eller
 	 * INGEN).
 	 * 
 	 * @param spiller
 	 *            hvilken spiller det er.
 	 */
 	public Spiller(Spillere spiller) {
-		throw new RuntimeException("Spiller konstruktør ikke implementert");
+		//throw new RuntimeException("Spiller konstrukt�r ikke implementert");
+		
 	}
 
 	@Override
 	public int getAntallKort() {
-		throw new RuntimeException("getAntallKort ikke implementert");
+		//throw new RuntimeException("getAntallKort ikke implementert");
+		return getAntallKort();
 	}
 
 	@Override
 	public Hand getHand() {
-		throw new RuntimeException("getHand ikke implementert");
+		//throw new RuntimeException("getHand ikke implementert");
+		return getHand();
 	}
 
 	public int getAntallTrekk() {
-		throw new RuntimeException("getAntallTrekk ikke implementert");
+		//throw new RuntimeException("getAntallTrekk ikke implementert");
+		return getAntallTrekk();
 	}
 
 	public Spillere hvem() {
-		throw new RuntimeException("hvem ikke implementert");
+		//throw new RuntimeException("hvem ikke implementert");
+		return hvem();
 	}
 
 	public void setAntallTrekk(int t) {
-		throw new RuntimeException("setAntallTrekk ikke implementert");
+		//throw new RuntimeException("setAntallTrekk ikke implementert");
+		this.setAntallTrekk(t);
 	}
 
 	@Override
 	public boolean erFerdig() {
-		throw new RuntimeException("erFerdig ikke implementert");
+		//throw new RuntimeException("erFerdig ikke implementert");
+		return erFerdig();
 	}
 
 	@Override
 	public void leggTilKort(Kort kort) {
-		throw new RuntimeException("leggTilkort ikke implementert");
+		//throw new RuntimeException("leggTilkort ikke implementert");
+		this.leggTilKort(kort);
 	}
 
 	@Override
 	public void fjernKort(Kort kort) {
-		throw new RuntimeException("fjernKort ikke implementert");
+		//throw new RuntimeException("fjernKort ikke implementert");
+		this.fjernKort(kort);
 	}
 
 	@Override
 	public void fjernAlleKort() {
-		throw new RuntimeException("fjernAlleKort ikke implementert");
+		//throw new RuntimeException("fjernAlleKort ikke implementert");
+		this.fjernAlleKort();
 	}
 
 	@Override
 	public void trekker(Kort kort) {
-		throw new RuntimeException("trekker ikke implementert");
+		//throw new RuntimeException("trekker ikke implementert");
+		this.trekker(kort);
 	}
 }
