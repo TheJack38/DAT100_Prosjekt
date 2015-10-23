@@ -18,7 +18,8 @@ public abstract class Spiller implements ISpiller {
 	// legg til objektvariable her
 	private Hand hand;
 	Spillere spiller;
-	int antallTrekk;
+	private int antallTrekk;
+	private int antallKort;
 	
 	/**
 	 * Standard konstrukt¯r som oppretter en Spiller med en hÂnd uten kort,
@@ -28,7 +29,7 @@ public abstract class Spiller implements ISpiller {
 		//throw new RuntimeException("Spiller kontruktør ikke implementert");
 		hand = new Hand();
 		this.spiller = Spillere.INGEN;
-		setAntallTrekk(0);
+		antallTrekk = 0;
 	}
 
 	/**
@@ -42,34 +43,34 @@ public abstract class Spiller implements ISpiller {
 		//throw new RuntimeException("Spiller konstrukt�r ikke implementert");
 		this.spiller = spiller;
 		hand = new Hand();
-		setAntallTrekk(0);
+		antallTrekk = ;
 	}
 
 	@Override
 	public int getAntallKort() {
-		throw new RuntimeException("getAntallKort ikke implementert");
-		
+		return hand.getAntalKort();
 	}
 
 	@Override
 	public Hand getHand() {
 		//throw new RuntimeException("getHand ikke implementert");
-		return getHand();
+		hand.get
+		return ;
 	}
 
 	public int getAntallTrekk() {
 		//throw new RuntimeException("getAntallTrekk ikke implementert");
-		return getAntallTrekk();
+		return antallTrekk;
 	}
 
 	public Spillere hvem() {
 		//throw new RuntimeException("hvem ikke implementert");
-		return hvem();
+		return spiller;
 	}
 
 	public void setAntallTrekk(int t) {
 		//throw new RuntimeException("setAntallTrekk ikke implementert");
-		this.setAntallTrekk(t);
+		;
 	}
 
 	@Override

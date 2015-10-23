@@ -10,7 +10,6 @@ public class Hand extends KortSamling {
 
 	// oppretter variablar
 
-
 	/**
 	 * Lager en tom hand.
 	 */
@@ -28,9 +27,8 @@ public class Hand extends KortSamling {
 	 */
 	@Override
 	public void leggTil(Kort kort) {
-		 throw new RuntimeException("leggTil ikke implementert");
-		
-
+		// throw new RuntimeException("leggTil ikke implementert");
+		super.leggTil(kort);
 	}
 
 	/**
@@ -40,7 +38,7 @@ public class Hand extends KortSamling {
 	 */
 	private void sorter() {
 		int antallKort = getAntalKort();
-		Kort[] kortTab = getSamling();
+		Kort kortTab[] = getSamling();
 
 		for (int i = 0; i < antallKort - 1; i++) {
 			int minste = i;
@@ -56,4 +54,3 @@ public class Hand extends KortSamling {
 	}
 
 }
-
