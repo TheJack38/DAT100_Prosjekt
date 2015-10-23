@@ -7,7 +7,7 @@ import no.hib.dat100.prosjekt.modell.Kort;
 
 public class RandomSpiller extends Spiller {
 
-	\\ hello world!
+	// hello world!
 	
 	public RandomSpiller(Spillere spiller) {
 		super(spiller);
