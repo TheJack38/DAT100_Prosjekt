@@ -3,6 +3,7 @@ package no.hib.dat100.prosjekt.kontroll;
 import java.util.ArrayList;
 
 import no.hib.dat100.prosjekt.modell.Bunke;
+import no.hib.dat100.prosjekt.modell.Hand;
 import no.hib.dat100.prosjekt.modell.Kort;
 
 /**
@@ -65,8 +66,8 @@ public class Spill {
 		fraBunke = new Bunke();
 		tilBunke = new Bunke();
 		fraBunke.leggTilAlle();
-		
-		throw new RuntimeException("start ikke implementert");
+		this.delutKort();
+		this.vendOverste();
 	}
 
 	/**
@@ -217,7 +218,14 @@ public class Spill {
 	 * @return true dersom spilleren har kortet, false ellers.
 	 */
 	public boolean leggnedKort(ISpiller spiller, Kort kort) {
-		throw new RuntimeException("leggnedKort ikke implementert");
+		Hand tempHand = spiller.getHand();
+		boolean retVar = tempHand.har(kort);
+		if(retVar){
+			spiller.fjernKort(kort);
+			tilBunke.leggTil(kort);
+			spiller.setAntallTrekk(0);
+		}
+		return retVar;
 	}
 
 	/**
@@ -228,7 +236,7 @@ public class Spill {
 	 *            spilleren som er i tur.
 	 */
 	public void forbiSpiller(ISpiller spiller) {
-		throw new RuntimeException("forbiSpiller ikke implementert");
+		spiller.setAntallTrekk(0);
 	}
 
 	/**
