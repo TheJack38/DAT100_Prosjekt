@@ -35,6 +35,11 @@ public class Hand extends KortSamling {
 			ha.kortpaahand[i] = kort;
 		}
 
+	}		ha.leggTil(kort);
+		for (int i = 0; i < MAKS_KORT; i++) {
+			ha.kortpaahand[i] = kort;
+		}
+
 	}
 
 	/**
@@ -50,6 +55,16 @@ public class Hand extends KortSamling {
 			int minste = i;
 			for (int j = i + 1; j < antallKort; j++) {
 				if (kortTab[j].compareTo(kortTab[minste]) < 0) {
+					minste = j;
+				}
+			}
+			Kort k = kortTab[i];
+			kortTab[i] = kortTab[minste];
+			kortTab[minste] = k;
+		}
+	}
+
+}o(kortTab[minste]) < 0) {
 					minste = j;
 				}
 			}
