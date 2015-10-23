@@ -28,7 +28,7 @@ public abstract class Spiller implements ISpiller {
 		//throw new RuntimeException("Spiller kontruktÃ¸r ikke implementert");
 		hand = new Hand();
 		this.spiller = Spillere.INGEN;
-		setAntallTrekk(0);
+		antallTrekk = 0;
 	}
 
 	/**
@@ -42,19 +42,20 @@ public abstract class Spiller implements ISpiller {
 		//throw new RuntimeException("Spiller konstruktør ikke implementert");
 		this.spiller = spiller;
 		hand = new Hand();
-		setAntallTrekk(0);
+		antallTrekk = 0;
 	}
 
 	@Override
 	public int getAntallKort() {
 		//throw new RuntimeException("getAntallKort ikke implementert");
-		;
+		
+		return antallTrekk;
 	}
 
 	@Override
 	public Hand getHand() {
 		//throw new RuntimeException("getHand ikke implementert");
-		return getHand();
+		return hand;
 	}
 
 	public int getAntallTrekk() {
