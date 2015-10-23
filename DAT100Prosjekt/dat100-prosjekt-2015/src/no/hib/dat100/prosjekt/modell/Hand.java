@@ -10,22 +10,37 @@ public class Hand extends KortSamling {
 
 	// oppretter variablar
 	private Kort kortpaahand[];
-	
+	private final int MAKS_KORT = 12;
+
 	/**
 	 * Lager en tom hand.
 	 */
-	public Hand() { 
+	public Hand() {
 		super();
 	}
+
+	Hand ha = new Hand();
+
 	/**
 	 * Legger et kort til en hand.
-	 * @param kort kortet som skal legges til.
+	 * 
+	 * @param kort
+	 *            kortet som skal legges til.
 	 */
 	@Override
-	public void leggTil(Kort kort ) {
-//		throw new RuntimeException("leggTil ikke implementert");
-		this.leggTil(kort);
+	public void leggTil(Kort kort) {
+		// throw new RuntimeException("leggTil ikke implementert");
+		ha.leggTil(kort);
+		for (int i = 0; i < MAKS_KORT; i++) {
+			ha.kortpaahand[i] = kort;
 		}
+
+	}		ha.leggTil(kort);
+		for (int i = 0; i < MAKS_KORT; i++) {
+			ha.kortpaahand[i] = kort;
+		}
+
+	}
 
 	/**
 	 * Sorterer en hand. Rekkefølgen er bestemt av compareTo() i Kort-klassen.
@@ -40,6 +55,16 @@ public class Hand extends KortSamling {
 			int minste = i;
 			for (int j = i + 1; j < antallKort; j++) {
 				if (kortTab[j].compareTo(kortTab[minste]) < 0) {
+					minste = j;
+				}
+			}
+			Kort k = kortTab[i];
+			kortTab[i] = kortTab[minste];
+			kortTab[minste] = k;
+		}
+	}
+
+}o(kortTab[minste]) < 0) {
 					minste = j;
 				}
 			}

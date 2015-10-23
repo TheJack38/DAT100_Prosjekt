@@ -22,7 +22,8 @@ public abstract class Spiller implements ISpiller {
 	 * antalltrekk som 0 og setter spiller til Spillere.INGEN.
 	 */
 	public Spiller() {
-		throw new RuntimeException("Spiller kontruktør ikke implementert");
+		//throw new RuntimeException("Spiller kontruktør ikke implementert");
+		getHand();
 	}
 
 	/**
