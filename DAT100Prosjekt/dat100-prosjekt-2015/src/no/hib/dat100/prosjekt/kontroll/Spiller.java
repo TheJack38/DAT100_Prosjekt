@@ -16,7 +16,7 @@ import no.hib.dat100.prosjekt.modell.Kort;
 public abstract class Spiller implements ISpiller {
 
 	// legg til objektvariable her
-	private Hand hand;
+	Hand hand = new Hand();
 	Spillere spiller;
 	private int antallTrekk;
 	private int antallKort;
@@ -27,9 +27,9 @@ public abstract class Spiller implements ISpiller {
 	 */
 	public Spiller() {
 		//throw new RuntimeException("Spiller kontruktÃ¸r ikke implementert");
-		hand = new Hand();
+		this.hand = new Hand();
 		this.spiller = Spillere.INGEN;
-		antallTrekk = 0;
+		this.antallTrekk = 0;
 	}
 
 	/**
@@ -42,8 +42,8 @@ public abstract class Spiller implements ISpiller {
 	public Spiller(Spillere spiller) {
 		//throw new RuntimeException("Spiller konstruktør ikke implementert");
 		this.spiller = spiller;
-		hand = new Hand();
-		antallTrekk = ;
+		this.hand = new Hand();
+		this.antallTrekk = 0;
 	}
 
 	@Override
@@ -54,23 +54,22 @@ public abstract class Spiller implements ISpiller {
 	@Override
 	public Hand getHand() {
 		//throw new RuntimeException("getHand ikke implementert");
-		hand.get
-		return ;
+		return hand.getSamling();
 	}
 
 	public int getAntallTrekk() {
 		//throw new RuntimeException("getAntallTrekk ikke implementert");
-		return antallTrekk;
+		return ;
 	}
 
 	public Spillere hvem() {
 		//throw new RuntimeException("hvem ikke implementert");
-		return spiller;
+		return this.spiller;
 	}
 
 	public void setAntallTrekk(int t) {
 		//throw new RuntimeException("setAntallTrekk ikke implementert");
-		;
+		this.antallTrekk = t;
 	}
 
 	@Override
