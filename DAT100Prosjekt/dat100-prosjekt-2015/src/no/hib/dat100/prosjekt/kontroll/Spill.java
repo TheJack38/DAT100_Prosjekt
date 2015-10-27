@@ -240,19 +240,34 @@ public class Spill {
 	}
 
 	/**
-	 * Metode for √Ç utf¬Øre en handling (trekke, spille, forbi). Dersom hanling
-	 * er kort, blir kortet ogs√Ç spilt.
+	 * Metode for Â utf¯re en handling (trekke, spille, forbi). Dersom hanling
+	 * er kort, blir kortet ogsÂ spilt.
 	 * 
 	 * @param spiller
-	 *            spiller som utf¬Ører handlingen.
+	 *            spiller som utf¯rer handlingen.
 	 * @param handling
 	 *            handling som utf¬Øres.
 	 * 
 	 * @return kort som trekkes, kort som spilles eller null ved forbi.
 	 */
 	public Kort utforHandling(ISpiller spiller, Handling handling) {
-
-		throw new RuntimeException("utforHandling ikke implementert");
+		//Check handling type
+		//if sentences
+		HandlingsType type = handling.getType();
+		if(type == HandlingsType.TREKK){
+			Kort kort = fraBunke.trekk();
+			spiller.leggTilKort(kort);
+			return kort;
+		}
+		else if(type == HandlingsType.LEGGNED){
+			Kort kort = handling.getKort();
+			spiller.fjernKort(kort);
+			tilBunke.leggTil(kort);
+			return kort;
+		}
+		else{
+			return null;
+		}
 	}
 
 	/**
@@ -264,7 +279,23 @@ public class Spill {
 	 * @return true dersom kortet er lovlig √Ç spille, false ellers.
 	 */
 	public boolean nedkortSyd(Kort kort) {
-		throw new RuntimeException("nedkortSyd ikke implementert");
+		//get top card from Down pile
+		//Check if kort is legal
+		Kort tilKort = tilBunke.topp();
+		int kortVerdi = kort.getVerdi();
+		int tilVerdi = tilKort.getVerdi();
+		if(kortVerdi == 8){
+			return true;
+		}
+		else if(kortVerdi>tilVerdi){
+			return true;
+		}
+		else if(kort.sammeFarge(tilKort)){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	/**
@@ -273,6 +304,18 @@ public class Spill {
 	 * @return kort som blir foresl√Çtt.
 	 */
 	public Kort foreslaaKortSyd() {
-		throw new RuntimeException("foreslaaKortSyd ikke implementert");
+		//get top card from Down pile
+		//find lowest card that's higher than this card
+		//suggest
+		Kort tilKort = tilBunke.topp();
+		Hand sydHand = syd.getHand();
+		ArrayList<Kort> sydSamling = sydHand.toArrayList();
+		int handIndex = sydHand.getAntalKort();
+		for(Kort element : sydSamling){
+			if(tilKort.compareTo(element)<0){
+				return element;				
+			}
+		}
+		return null;
 	}
 }
