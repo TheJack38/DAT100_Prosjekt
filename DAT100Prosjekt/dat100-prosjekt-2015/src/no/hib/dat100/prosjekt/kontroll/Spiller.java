@@ -2,6 +2,7 @@ package no.hib.dat100.prosjekt.kontroll;
 
 import no.hib.dat100.prosjekt.modell.Hand;
 import no.hib.dat100.prosjekt.modell.Kort;
+import no.hib.dat100.prosjekt.modell.KortSamling;
 
 /**
  * Abstrakt klasse som implementerer alle metodene i kontrakten ISpiller,
@@ -19,7 +20,6 @@ public abstract class Spiller implements ISpiller {
 	Hand hand = new Hand();
 	Spillere spiller;
 	private int antallTrekk;
-	private int antallKort;
 	
 	/**
 	 * Standard konstrukt¯r som oppretter en Spiller med en hÂnd uten kort,
@@ -54,7 +54,7 @@ public abstract class Spiller implements ISpiller {
 	@Override
 	public Hand getHand() {
 		//throw new RuntimeException("getHand ikke implementert");
-		return hand.getSamling();
+		return hand;
 	}
 
 	public int getAntallTrekk() {
@@ -75,30 +75,35 @@ public abstract class Spiller implements ISpiller {
 	@Override
 	public boolean erFerdig() {
 		//throw new RuntimeException("erFerdig ikke implementert");
-		return erFerdig();
+		if (hand.getAntalKort() == 0){
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	public void leggTilKort(Kort kort) {
 		//throw new RuntimeException("leggTilkort ikke implementert");
-		this.leggTilKort(kort);
+		hand.leggTil(kort);
 	}
 
 	@Override
 	public void fjernKort(Kort kort) {
 		//throw new RuntimeException("fjernKort ikke implementert");
-		this.fjernKort(kort);
+		hand.fjern(kort);
 	}
 
 	@Override
 	public void fjernAlleKort() {
 		//throw new RuntimeException("fjernAlleKort ikke implementert");
-		this.fjernAlleKort();
+		hand.fjernAlle();
 	}
 
 	@Override
 	public void trekker(Kort kort) {
 		//throw new RuntimeException("trekker ikke implementert");
-		this.trekker(kort);
+		hand.leggTil(kort);
+		this.antallTrekk++;
 	}
 }
