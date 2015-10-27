@@ -3,7 +3,9 @@ package no.hib.dat100.prosjekt.kontroll;
 import no.hib.dat100.prosjekt.modell.Hand;
 import no.hib.dat100.prosjekt.modell.Kort;
 import no.hib.dat100.prosjekt.modell.KortSamling;
+
 //ferdig?
+
 /**
  * Abstrakt klasse som implementerer alle metodene i kontrakten ISpiller,
  * bortsett fra nesteHandling(). Dette er grunnen til at klassen er abstrakt.
