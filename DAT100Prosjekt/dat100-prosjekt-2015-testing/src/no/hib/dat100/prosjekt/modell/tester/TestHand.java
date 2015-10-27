@@ -23,8 +23,11 @@ public class TestHand {
 		Kort kort3 = new Kort(Kortfarge.Hjerter,3);
 		
 		hand.leggTil(kort1);
-		hand.leggTil(kort3);
 		hand.leggTil(kort2);
+		hand.leggTil(kort3);
+		//Her var testen feil! Den la til kort3 før kort2, men tester for kort2 før kort3. 
+		//Eg forandra det tilbake!
+		
 		
 		ArrayList<Kort> kortliste = hand.toArrayList();
 		

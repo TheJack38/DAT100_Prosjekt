@@ -68,6 +68,7 @@ public class Spill {
 		fraBunke.leggTilAlle();
 		this.delutKort();
 		this.vendOverste();
+
 	}
 
 	/**
@@ -75,11 +76,11 @@ public class Spill {
 	 * 
 	 */
 	private void delutKort() {
-		for(int i = 0; i<7; i++){
+		for(int i = 0; i<Regler.antallKortVedStart(); i++){
 			Kort fraTopp = fraBunke.trekk();
 			syd.leggTilKort(fraTopp);
 		}
-		for(int i = 0; i<7; i++){
+		for(int i = 0; i<Regler.antallKortVedStart(); i++){
 			Kort fraTopp = fraBunke.trekk();
 			nord.leggTilKort(fraTopp);
 		}
@@ -104,7 +105,14 @@ public class Spill {
 		//Anntar at denne bare blir kalt dersom vi vet fra-bunken er tom.
 		//Dersom ikkje, så legg til if-setning om if(fraBunke == empty) eller noe
 		Kort tilTopp = tilBunke.trekk();
-		fraBunke = tilBunke;
+		Kort snuBunke[] = tilBunke.getSamling();
+//		System.out.println(tilBunke.getAntalKort());
+//		System.out.println(fraBunke.getAntalKort());
+		for(Kort element : snuBunke){
+			if(element != null){
+				fraBunke.leggTil(element);
+			}
+		}
 		fraBunke.stokk();
 		tilBunke.fjernAlle();
 		tilBunke.leggTil(tilTopp);
@@ -126,6 +134,9 @@ public class Spill {
 		}
 		Kort tempTrekk = fraBunke.trekk();
 		spiller.leggTilKort(tempTrekk);
+		int t = spiller.getAntallTrekk();
+		t++;
+		spiller.setAntallTrekk(t);
 		return tempTrekk; //Hvorfor returneres kortet?
 	}
 

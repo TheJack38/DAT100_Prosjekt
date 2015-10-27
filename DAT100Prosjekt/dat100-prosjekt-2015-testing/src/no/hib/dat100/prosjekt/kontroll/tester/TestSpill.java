@@ -47,8 +47,10 @@ public class TestSpill {
 
 		Bunke bunkeTil = spill.getBunkeTil();
 		Bunke bunkeFra = spill.getBunkeFra();
+		
 
 		int bunkefraantall = bunkeFra.getAntalKort();
+		
 
 		while (!bunkeFra.erTom()) {
 			bunkeTil.leggTil(bunkeFra.trekk());
@@ -60,6 +62,7 @@ public class TestSpill {
 
 		bunkeTil = spill.getBunkeTil();
 		bunkeFra = spill.getBunkeFra();
+		
 
 		assertEquals(bunkeTil.getAntalKort(), 1);
 		assertEquals(bunkeTil.topp(), overst);

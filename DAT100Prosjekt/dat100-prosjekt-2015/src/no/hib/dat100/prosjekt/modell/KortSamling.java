@@ -200,7 +200,7 @@ public abstract class KortSamling {
 			int ran = random.nextInt(MAKS_KORT-index); //If vi mister et kort når vi stokker, er feilen sikkert her!
 			samling[index] = tempList[ran];
 			tempList[ran] = null;
-			for(int next = 0; next<MAKS_KORT-ran; next++){
+			for(int next = 0; next<MAKS_KORT-ran-1; next++){
 				tempList[ran+next] = tempList[ran+next+1];
 			}
 		}
