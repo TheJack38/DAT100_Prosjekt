@@ -41,7 +41,7 @@ public class FirstFitSpiller extends Spiller {
 		// sjå gjennom kort
 		for (Kort k : h) {
 			if (Regler.kanLeggeNed(k, topp)) { // regler, kva ein kan legge ned
-				if (!Regler.kanLeggeNed(k, topp)) { // om åtter,
+				if (Regler.kanLeggeNed(k, topp)) { // om åtter,
 					lovlige.add(k); // legg til kort
 				} else {             // om ikkje,
 					attere.add(k);  // om lovlige, legg til kort
@@ -63,11 +63,13 @@ public class FirstFitSpiller extends Spiller {
 				spillFra = null;
 			}
 
-//  Dersom man ikke har lovlige kort å spille, trekker man om
-//man ikke allerede har trukket maks antall ganger. I så fall sier man forbi.
+			//  Dersom man ikke har lovlige kort å spille, trekker man om
+			//man ikke allerede har trukket maks antall ganger. I så fall sier man forbi.
+			
+			// expected TREKK but was LEGGNED
 			
 			Handling tur = null; // oppretter objekt tur, setter verdi null
-			if (spillFra != null) {; // dersom spillFra ikkje har verdien null
+			if (spillFra == null) {
 				tur = new Handling(HandlingsType.LEGGNED, spill); // setter handling LEGGNED 
 				setAntallTrekk(0); // setter antalltrekk fra Spiller-klassen
 			} else if (getAntallTrekk() < Regler.maksTrekk()) { // om maksimale trekk ikkje er nådd
