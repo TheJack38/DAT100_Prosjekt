@@ -36,46 +36,35 @@ public class FirstFitSpiller extends Spiller {
 	public Handling nesteHandling(Kort topp) {
 		ArrayList<Kort> h = getHand().toArrayList();
 		ArrayList<Kort> lovlige = new ArrayList<Kort>();
-		ArrayList<Kort> attere = new ArrayList<Kort>();
 
 		// sjå gjennom kort
 		for (Kort k : h) {
 			if (Regler.kanLeggeNed(k, topp)) { // regler, kva ein kan legge ned
-				if (Regler.kanLeggeNed(k, topp)) { // om åtter,
-					lovlige.add(k); // legg til kort
-				} else {             // om ikkje,
-					attere.add(k);  // om lovlige, legg til kort
-				}
+				lovlige.add(k); // legg til kort
+				
 			}
 		
 		}
 		
-		// spill første kortet som er lovlig å spille
-				
-			Kort spill = null; // oppretter objekt spill av Kort, setter verdi null
-			ArrayList<Kort> spillFra = null; // oppretter array, setter verdi null
-			
-			if (attere.isEmpty()) {
-				spillFra = lovlige;
-			} else if (lovlige.isEmpty()) {
-				spillFra = attere;
-			} else {
-				spillFra = null;
-			}
-
+			// spill første kortet som er lovlig å spille	
 			//  Dersom man ikke har lovlige kort å spille, trekker man om
 			//man ikke allerede har trukket maks antall ganger. I så fall sier man forbi.
 			
-			// expected TREKK but was LEGGNED
-			
-			Handling tur = null; // oppretter objekt tur, setter verdi null
-			if (spillFra == null) {
+			Handling tur = null; 
+			Kort spill = null; // oppretter objekt spill av Kort, setter verdi null
+			if(!lovlige.isEmpty()){
+				spill = lovlige.get(0);
 				tur = new Handling(HandlingsType.LEGGNED, spill); // setter handling LEGGNED 
 				setAntallTrekk(0); // setter antalltrekk fra Spiller-klassen
-			} else if (getAntallTrekk() < Regler.maksTrekk()) { // om maksimale trekk ikkje er nådd
-				tur = new Handling(HandlingsType.TREKK, spill); // setter handling TREKK
-			} else { // om ikkje dei andre krava oppfyller
-				tur = new Handling(HandlingsType.FORBI, spill); //setter handling FORBI
+			} 
+			else if (getAntallTrekk() < Regler.maksTrekk()) { // om maksimale trekk ikkje er nådd
+				tur = new Handling(HandlingsType.TREKK, null); // setter handling TREKK
+				int trekk = this.getAntallTrekk();
+				trekk++;
+				this.setAntallTrekk(trekk);
+			} 
+			else { // om ikkje dei andre krava oppfyller
+				tur = new Handling(HandlingsType.FORBI, null); //setter handling FORBI
 				setAntallTrekk(0); // setter antalltrekk fra Spiller-klassen
 			}
 			 return tur;
