@@ -62,7 +62,8 @@ public class Spill {
 	 */
 	public void start() {
 		nord = new RandomSpiller(Spillere.NORD);
-		syd = new MenneskeSpiller(Spillere.SYD);
+		//syd = new MenneskeSpiller(Spillere.SYD);
+		syd = new FirstFitSpiller(Spillere.SYD);
 		fraBunke = new Bunke();
 		tilBunke = new Bunke();
 		fraBunke.leggTilAlle();
@@ -106,8 +107,6 @@ public class Spill {
 		//Dersom ikkje, så legg til if-setning om if(fraBunke == empty) eller noe
 		Kort tilTopp = tilBunke.trekk();
 		Kort snuBunke[] = tilBunke.getSamling();
-//		System.out.println(tilBunke.getAntalKort());
-//		System.out.println(fraBunke.getAntalKort());
 		for(Kort element : snuBunke){
 			if(element != null){
 				fraBunke.leggTil(element);
