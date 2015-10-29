@@ -164,15 +164,18 @@ public abstract class KortSamling {
 	public void fjern(Kort kort) {
 		if(this.har(kort)){
 			for(int i = 0; i<MAKS_KORT; i++){
-				if(samling[i].equals(kort)){
-					samling[i] = null;
-					for(int next = 0; next<MAKS_KORT-i; next++){
-						samling[i+next] = samling[i+next];
+				if (samling[i] != null) {
+					if (samling[i].equals(kort)) {
+						samling[i] = null;
+						for (int next = 0; next < MAKS_KORT - i; next++) {
+							samling[i + next] = samling[i + next];
+						}
+						counter--;
+						// Tror dette lar noen ubrukte entries ha kort object i
+						// dem
+						// Men siden counteren er lavere kan de ikkje sees.
+						break;
 					}
-					counter--;	
-					//Tror dette lar noen ubrukte entries ha kort  object i dem
-					//Men siden counteren er lavere kan de ikkje sees.
-					break;
 				}
 			}
 
