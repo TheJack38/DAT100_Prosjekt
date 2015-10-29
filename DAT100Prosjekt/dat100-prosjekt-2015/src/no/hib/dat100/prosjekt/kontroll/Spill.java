@@ -133,10 +133,10 @@ public class Spill {
 			this.snuTilBunken();
 		}
 		Kort tempTrekk = fraBunke.trekk();
-		spiller.leggTilKort(tempTrekk);
-		int t = spiller.getAntallTrekk();
-		t++;
-		spiller.setAntallTrekk(t);
+		spiller.trekker(tempTrekk);
+//		int t = spiller.getAntallTrekk();
+//		t++;
+//		spiller.setAntallTrekk(t);
 		return tempTrekk; //Hvorfor returneres kortet?
 	}
 
@@ -266,9 +266,10 @@ public class Spill {
 		//if sentences
 		HandlingsType type = handling.getType();
 		if(type == HandlingsType.TREKK){
-			Kort kort = fraBunke.trekk();
-			spiller.leggTilKort(kort);
-			return kort;
+//			Kort kort = fraBunke.trekk();
+//			spiller.trekker(kort);
+//			return kort;
+			return this.trekkFraBunke(spiller);
 		}
 		else if(type == HandlingsType.LEGGNED){
 			Kort kort = handling.getKort();

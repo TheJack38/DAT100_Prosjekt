@@ -59,9 +59,9 @@ public class FirstFitSpiller extends Spiller {
 			} 
 			else if (getAntallTrekk() < Regler.maksTrekk()) { // om maksimale trekk ikkje er nådd
 				tur = new Handling(HandlingsType.TREKK, null); // setter handling TREKK
-				int trekk = this.getAntallTrekk();
-				trekk++;
-				this.setAntallTrekk(trekk);
+//				int trekk = this.getAntallTrekk();
+//				trekk++;
+//				this.setAntallTrekk(trekk);
 			} 
 			else { // om ikkje dei andre krava oppfyller
 				tur = new Handling(HandlingsType.FORBI, null); //setter handling FORBI
