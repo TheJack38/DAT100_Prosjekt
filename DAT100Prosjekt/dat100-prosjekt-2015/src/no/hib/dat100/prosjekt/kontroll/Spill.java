@@ -67,6 +67,7 @@ public class Spill {
 		fraBunke = new Bunke();
 		tilBunke = new Bunke();
 		fraBunke.leggTilAlle();
+		fraBunke.stokk();
 		this.delutKort();
 		this.vendOverste();
 
